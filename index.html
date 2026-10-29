@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="ur-Latn" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MEPCO Info Hub - Bijli Bill Check, Tariffs, Calculator & Shikayat Portal</title>
+  <meta name="description" content="Ghair-sarkari portal baraye MEPCO consumers. Check online duplicate bill via official portal, calculate domestic bills with 2026 fixed charges, load shedding schedule & helpline directory.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://yourdomain.com/">
+
+  <!-- Open Graph / Meta -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="MEPCO Info Hub - Unofficial Consumer Portal">
+  <meta property="og:description" content="Check MEPCO duplicate bill, calculate estimated bills with 2026 tariff & fixed charges, and lodge complaints.">
+  <meta property="og:url" content="https://yourdomain.com/">
+
+  <!-- Tailwind CSS via CDN (Production JIT) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#ecfdf5',
+              600: '#059669',
+              700: '#047857',
+              800: '#065f46',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Search Console verification meta tag option -->
+  <!-- <meta name="google-site-verification" content="YOUR_GSC_CODE_HERE" /> -->
+
+  <!-- Structured Data: Organization & FAQPage Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://yourdomain.com/#website",
+        "url": "https://yourdomain.com/",
+        "name": "MEPCO Info Hub",
+        "description": "Ghair-sarkari maloomati portal baraye MEPCO consumers"
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Kya CNIC se MEPCO bill check ho sakta hai?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "PITC centralized web portal par bill dekhne ke liye 14-digit reference number ya 10-digit customer ID darkar hoti hai. CNIC ke zariye lookup aam taur par support nahi hota."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "MEPCO 2026 fixed charges kya hain?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "NEPRA ke mutabiq domestic consumers par sanctioned load (kW) ki bunyad par fixed monthly charges aaid hote hain jo Rs 200 se Rs 675 per kW tak mutawaqqe hain."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-sans antialiased transition-colors duration-200">
+
+  <!-- TOP MANDATORY DISCLAIMER BANNER -->
+  <aside role="alert" class="bg-amber-100 border-b border-amber-300 dark:bg-amber-950/80 dark:border-amber-800 text-amber-950 dark:text-amber-200 px-4 py-2.5 text-xs sm:text-sm font-medium sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-1 text-center sm:text-left">
+      <p>
+        ⚠️ <strong>Wazahat:</strong> Yeh MEPCO ki official website nahi hai. Official website 
+        <a href="https://mepco.com.pk" target="_blank" rel="noopener noreferrer" class="underline font-bold hover:text-amber-800 dark:hover:text-amber-100">mepco.com.pk</a> hai.
+      </p>
+      <span class="text-[11px] font-mono opacity-80" dir="rtl">یہ میپکو کی آفیشل ویب سائٹ نہیں ہے۔</span>
+    </div>
+  </aside>
+
+  <!-- NAVIGATION -->
+  <header class="bg-white/90 dark:bg-slate-900/90 border-b border-slate-200 dark:border-slate-800 backdrop-blur sticky top-[41px] z-40">
+    <div class="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-2">
+        <span class="text-2xl">⚡</span>
+        <a href="#" class="font-extrabold text-xl tracking-tight text-emerald-700 dark:text-emerald-400">
+          MEPCO <span class="text-slate-700 dark:text-slate-200 font-normal text-base">Info Hub</span>
+        </a>
+      </div>
+      <nav class="hidden md:flex space-x-6 text-sm font-medium">
+        <a href="#bill-checker" class="hover:text-emerald-600 transition-colors">Bill Check</a>
+        <a href="#calculator" class="hover:text-emerald-600 transition-colors">Calculator</a>
+        <a href="#guides" class="hover:text-emerald-600 transition-colors">Guides</a>
+        <a href="#complaints" class="hover:text-emerald-600 transition-colors">Shikayat (118)</a>
+        <a href="#outages" class="hover:text-emerald-600 transition-colors">Load Shedding</a>
+      </nav>
+      <div class="flex items-center gap-3">
+        <button id="theme-toggle" class="p-2 rounded-lg border border-slate-300 dark:border-slate-700 text-xs font-semibold" title="Toggle Light/Dark Mode">
+          🌓 Mode
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main class="flex-1 max-w-6xl w-full mx-auto px-4 py-8 space-y-12">
+
+    <!-- HERO & SECURE CLIENT-SIDE BILL CHECKER -->
+    <section id="bill-checker" class="text-center py-6 sm:py-10 space-y-4">
+      <span class="inline-block px-3 py-1 bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-xs font-bold rounded-full uppercase tracking-wider">
+        Ghair-Sarkari Rehnuma Portal
+      </span>
+      <h1 class="text-3xl sm:text-5xl font-black tracking-tight">
+        MEPCO Online Bijli Bill Check Karein
+      </h1>
+      <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base max-w-2xl mx-auto">
+        Apna 14-digit reference number likhein. Hamara system reference number save nahi karta, yeh direct official PITC portal nayi tab me kholega.
+      </p>
+
+      <!-- Bill Input Box -->
+      <form id="bill-form" class="w-full max-w-xl mx-auto bg-white dark:bg-slate-900 p-6 rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800 space-y-4 text-left">
+        <div>
+          <label for="ref-input" class="block text-xs font-bold uppercase tracking-wider mb-2 text-slate-700 dark:text-slate-300">
+            14-Digit Reference Number:
+          </label>
+          <div class="flex flex-col sm:flex-row gap-2">
+            <input 
+              type="text" 
+              id="ref-input" 
+              maxlength="14" 
+              inputmode="numeric" 
+              placeholder="Maslan: 01151111234567" 
+              class="flex-1 px-4 py-3 border border-slate-300 dark:border-slate-700 rounded-xl text-lg font-mono focus:ring-2 focus:ring-emerald-500 focus:outline-none dark:bg-slate-950 dark:text-white"
+              required
+            >
+            <button 
+              type="submit" 
+              class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-3 rounded-xl transition-all shadow-md active:scale-95 whitespace-nowrap"
+            >
+              Bill Dekhein ↗
+            </button>
+          </div>
+          <p id="bill-error" class="hidden text-xs text-red-600 font-semibold mt-2"></p>
+        </div>
+
+        <div class="p-3 bg-slate-50 dark:bg-slate-950 rounded-lg border border-slate-200 dark:border-slate-800 text-[11px] text-slate-500 dark:text-slate-400 space-y-1">
+          <p>🔒 <strong>Hifazati Wazahat:</strong> Koi bhi data hamare server par store nahi hota.</p>
+          <p>📌 Reference number bill ke oopar baayein (top-left) janib darj hota hai.</p>
+          <!-- TODO: Verify whether PITC direct URL query parameter (refno) bypasses captcha -->
+        </div>
+      </form>
+    </section>
+
+    <!-- AD SLOT 1 -->
+    <div class="max-w-[728px] min-h-[90px] mx-auto p-4 bg-slate-100 dark:bg-slate-900 border border-dashed border-slate-300 dark:border-slate-800 rounded-lg flex flex-col items-center justify-center text-xs text-slate-400 select-none">
+      <span>Ishtihaar (Ad Slot: Responsive Top Banner)</span>
+      <span class="text-[10px] text-slate-300 dark:text-slate-600">Google AdSense Placeholder</span>
+    </div>
+
+    <!-- QUICK ACCESS TILES -->
+    <section class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <a href="#calculator" class="p-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl hover:border-emerald-500 transition-colors">
+        <span class="text-2xl">🧮</span>
+        <h3 class="font-bold text-sm mt-2">Bill Calculator</h3>
+        <p class="text-[11px] text-slate-500">2026 fixed charges ke sath</p>
+      </a>
+      <a href="#complaints" class="p-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl hover:border-emerald-500 transition-colors">
+        <span class="text-2xl">☎️</span>
+        <h3 class="font-bold text-sm mt-2">Helpline & Shikayat</h3>
+        <p class="text-[11px] text-slate-500">118 call & 8118 SMS</p>
+      </a>
+      <a href="#new-connection" class="p-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl hover:border-emerald-500 transition-colors">
+        <span class="text-2xl">🔌</span>
+        <h3 class="font-bold text-sm mt-2">Naya Connection</h3>
+        <p class="text-[11px] text-slate-500">ENC portal ka tareeqa</p>
+      </a>
+      <a href="#outages" class="p-4 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl hover:border-emerald-500 transition-colors">
+        <span class="text-2xl">💡</span>
+        <h3 class="font-bold text-sm mt-2">Load Shedding</h3>
+        <p class="text-[11px] text-slate-500">Feeder category & schedule</p>
+      </a>
+    </section>
+
+    <!-- CALCULATOR SECTION -->
+    <section id="calculator" class="space-y-6">
+      <div class="border-b pb-4">
+        <h2 class="text-2xl font-black">MEPCO Bill Calculator (2026 Estimated Tariff)</h2>
+        <p class="text-xs text-slate-500">
+          Last Verified: 2026-03-30 | Makhooz: NEPRA S.R.O. Notifications (Takhmeena)
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <!-- Input Form -->
+        <form id="calc-form" class="lg:col-span-5 bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 space-y-4">
+          <div>
+            <label for="c-units" class="block text-xs font-bold uppercase mb-1">Units Consumed:</label>
+            <input type="number" id="c-units" min="1" value="250" class="w-full p-2.5 border rounded-lg dark:bg-slate-950 dark:border-slate-700 font-mono" required>
+          </div>
+
+          <div>
+            <label for="c-type" class="block text-xs font-bold uppercase mb-1">Consumer Category:</label>
+            <select id="c-type" class="w-full p-2.5 border rounded-lg dark:bg-slate-950 dark:border-slate-700 text-sm">
+              <option value="lifeline">Lifeline (Up to 100 Units, strictly non-commercial)</option>
+              <option value="protected">Protected (Up to 200 Units consistently)</option>
+              <option value="unprotected" selected>Unprotected (Regular Domestic)</option>
+            </select>
+            <!-- TODO: Confirm whether NEPRA evaluates protected status over 6 continuous months -->
+          </div>
+
+          <div>
+            <label for="c-load" class="block text-xs font-bold uppercase mb-1">Sanctioned Load (kW):</label>
+            <input type="number" id="c-load" min="1" max="50" value="1" class="w-full p-2.5 border rounded-lg dark:bg-slate-950 dark:border-slate-700 font-mono" required>
+            <span class="text-[11px] text-slate-400">Fixed charges kW ki bunyad par count hote hain.</span>
+          </div>
+
+          <div>
+            <label for="c-fpa" class="block text-xs font-bold uppercase mb-1">Estimated FPA / Unit (Rs):</label>
+            <input type="number" step="0.1" id="c-fpa" value="1.5" class="w-full p-2.5 border rounded-lg dark:bg-slate-950 dark:border-slate-700 font-mono">
+            <span class="text-[11px] text-slate-400">Fuel Price Adjustment tabdeeli mutawaqqe hoti hai.</span>
+          </div>
+
+          <button type="submit" class="w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl shadow active:scale-95 transition-transform">
+            Takhmeena Lagayein (Calculate)
+          </button>
+        </form>
+
+        <!-- Result Table Display -->
+        <div class="lg:col-span-7 bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 space-y-4">
+          <h3 class="font-bold text-base">Estimated Bill Breakdown:</h3>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-sm">
+              <thead class="border-b dark:border-slate-800 text-xs text-slate-400 uppercase">
+                <tr>
+                  <th class="py-2">Item</th>
+                  <th class="py-2 text-right">Details</th>
+                  <th class="py-2 text-right">PKR</th>
+                </tr>
+              </thead>
+              <tbody id="calc-breakdown-body" class="divide-y dark:divide-slate-800 font-mono text-xs">
+                <!-- Dynamically filled by JS -->
+              </tbody>
+              <tfoot class="border-t-2 border-slate-900 dark:border-slate-100 font-bold text-sm">
+                <tr>
+                  <td class="py-3">Kul Andaza Bill:</td>
+                  <td></td>
+                  <td id="calc-total" class="py-3 text-right text-emerald-600 dark:text-emerald-400 font-black text-base">Rs. 0</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+          <p class="text-[11px] text-amber-800 dark:text-amber-300 bg-amber-50 dark:bg-slate-950 p-2.5 rounded-lg border border-amber-200 dark:border-slate-800">
+            ⚠️ <strong>Wazahat:</strong> Yeh sirf andaza hai. Asal bill MEPCO ka official bill hoga jisme purane baqaya jaat aur deegar surcharges shamil ho sakte hain.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- BILL GUIDES DIRECTORY -->
+    <section id="guides" class="space-y-6">
+      <div class="border-b pb-4">
+        <h2 class="text-2xl font-black">MEPCO Consumer Guides</h2>
+        <p class="text-xs text-slate-500">Bill samajhne aur overbilling se bachne ki zaroori maloomat.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <article class="p-5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl space-y-2">
+          <h3 class="font-bold text-emerald-600">Bill Par Reference No Kahan Hai?</h3>
+          <p class="text-xs text-slate-600 dark:text-slate-400">
+            Bill ke sab se oopar baayein (top-left) janib ek box hota hai jisme 14 digits hote hain aur aakhir me <code>U</code> (Urban/Unprotected) ya <code>R</code> likha hota hai. Iske barabar 10-digit Consumer ID bhi likhi hoti hai.
+          </p>
+        </article>
+
+        <article class="p-5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl space-y-2">
+          <h3 class="font-bold text-emerald-600">Protected vs Unprotected Consumer</h3>
+          <p class="text-xs text-slate-600 dark:text-slate-400">
+            Agar pichle 6 maah tak aapka bill 200 units ya us se kam raha ho toh aap <strong>Protected</strong> rehte hain jahan per unit rate kam hota hai. Agar lagatar limit cross ho toh consumer <strong>Unprotected</strong> ho jata hai.
+          </p>
+        </article>
+
+        <article class="p-5 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl space-y-2">
+          <h3 class="font-bold text-emerald-600">Meter Reading Aur Overbilling</h3>
+          <p class="text-xs text-slate-600 dark:text-slate-400">
+            Bill par darj current reading ko apne digital meter ki reading se milayein. Agar bill par reading zyada likhi ho, toh meter ki picture bana kar foran sub-division SDO office me darj karwayein.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- COMPLAINTS & DIRECTORY -->
+    <section id="complaints" class="space-y-6">
+      <div class="border-b pb-4">
+        <h2 class="text-2xl font-black">Shikayat Registration & Helpline Directory</h2>
+        <p class="text-xs text-slate-500">24/7 emergency bijli bandish aur overbilling shikayat ke channels.</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="p-4 bg-white dark:bg-slate-900 border rounded-xl">
+          <span class="text-xs font-bold text-slate-400">Universal Helpline</span>
+          <p class="text-2xl font-extrabold text-emerald-600">118</p>
+          <p class="text-xs text-slate-500 mt-1">Toll-free 24/7 call center</p>
+        </div>
+        <div class="p-4 bg-white dark:bg-slate-900 border rounded-xl">
+          <span class="text-xs font-bold text-slate-400">SMS Inquiries</span>
+          <p class="text-2xl font-extrabold text-emerald-600">8118</p>
+          <p class="text-xs text-slate-500 mt-1">Reference number send karein</p>
+        </div>
+        <div class="p-4 bg-white dark:bg-slate-900 border rounded-xl">
+          <span class="text-xs font-bold text-slate-400">Billing Complaints</span>
+          <p class="text-xl font-extrabold text-emerald-600">0800-63726</p>
+          <p class="text-xs text-slate-500 mt-1">Toll free billing helpdesk</p>
+        </div>
+        <div class="p-4 bg-white dark:bg-slate-900 border rounded-xl">
+          <span class="text-xs font-bold text-slate-400">NEPRA Complaint Cell</span>
+          <p class="text-xl font-extrabold text-emerald-600">051-9207200</p>
+          <p class="text-xs text-slate-500 mt-1">Appellate escalation authority</p>
+        </div>
+      </div>
+      <!-- TODO: Verify whether complaint@mepco.com.pk or complaints@mepco.com.pk is active -->
+    </section>
+
+    <!-- NEW CONNECTION & OUTAGES GUIDE -->
+    <section id="new-connection" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="p-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl space-y-3">
+        <h3 class="text-xl font-bold">Naya Connection (ENC Portal)</h3>
+        <p class="text-xs text-slate-600 dark:text-slate-400">
+          Naye connection ke liye online <strong>enc.com.pk</strong> portal par apply kiya jata hai:
+        </p>
+        <ol class="list-decimal pl-5 text-xs text-slate-600 dark:text-slate-400 space-y-1">
+          <li>Application form online fill karein aur tracking number hasil karein.</li>
+          <li>CNIC, hamsaye ke bill ki copy aur registry/malkiat dastawizat upload karein.</li>
+          <li>MEPCO sarvey ke baad Demand Notice jari hoga jise bank me jama karwayein.</li>
+          <li>Paid slip upload hone ke baad meter nasb kiya jata hai.</li>
+        </ol>
+        <a href="https://enc.com.pk" target="_blank" rel="noopener noreferrer" class="inline-block mt
